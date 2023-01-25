@@ -4,6 +4,7 @@ public class Combinationsum
     public static void main(String[] args) 
     {
         Scanner sc = new Scanner(System.in);
+        List<List<Integer>> fina = new ArrayList<>();
         System.out.println("Enter the size of the Array : ");
         int n = sc.nextInt();
         int[] arr = new int[n];
@@ -15,10 +16,11 @@ public class Combinationsum
         System.out.println("Enter the Sum: ");
         int sum = sc.nextInt();
         System.out.println("Printing combinations whose sum is k");
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        combiSum(arr,list,0,sum,n);
+        List<Integer> list = new ArrayList<Integer>();
+        combiSum(arr,list,0,sum,n,fina);
+        System.out.println(fina);
     }
-    public static void combiSum(int[] arr, ArrayList<Integer> list, int index,int sum,int n)
+    public static void combiSum(int[] arr,List<Integer> list, int index,int sum,int n,List<List<Integer>> fina)
     {
         if(sum<0)
         {
@@ -26,14 +28,20 @@ public class Combinationsum
         }
         if(sum==0)
         {
-            System.out.println(list);
+            if(!fina.contains(list))
+            {
+                fina.add(new ArrayList<>(list));
+            }
             return;
         }
         if(index>=n)
         {
             if(sum==0)
             {
-                System.out.println(list);
+                if(!fina.contains(list))
+                {
+                fina.add(new ArrayList<>(list));
+               }
                 return;
             }
             else
@@ -42,9 +50,9 @@ public class Combinationsum
             }
         }
         list.add(arr[index]);
-        combiSum(arr,list,index+1,sum-arr[index],n);
-        combiSum(arr,list,index,sum-arr[index],n);
+        combiSum(arr,list,index+1,sum-arr[index],n,fina);
+        combiSum(arr,list,index,sum-arr[index],n,fina);
         list.remove(Integer.valueOf(arr[index]));
-        combiSum(arr,list,index+1,sum,n);
+        combiSum(arr,list,index+1,sum,n,fina);
     }
 }
