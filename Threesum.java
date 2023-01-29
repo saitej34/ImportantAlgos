@@ -27,7 +27,6 @@ public class Threesum
                 Collections.sort(list);
                 if(!finlist.contains(list))
                 {
-                    System.out.println("Hi");
                     finlist.add(new ArrayList<>(list));
                     return;
                 }
@@ -42,7 +41,6 @@ public class Threesum
             Collections.sort(list);
             if(!finlist.contains(list))
             {
-                System.out.println("Hi");
                 finlist.add(new ArrayList<>(list));
                 return;
             }
