@@ -12,7 +12,7 @@ public class Combisumtwo
         }
         System.out.println("Enter target sum");
         int target = sc.nextInt();
-        HashSet<List<Integer>> finlist = new HashSet<>();
+        ListSet<List<Integer>> finlist = new HashSet<>();
         List<Integer> list = new ArrayList<>();
         findComb(n,arr,finlist,list,0,target,0);
         System.out.println(finlist);
@@ -45,4 +45,5 @@ public class Combisumtwo
         sum=sum-arr[index];
         findComb(n,arr,finlist,list,index+1,target,sum);
     }
+        
 }
