@@ -5,22 +5,15 @@ public class Climb
     {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        ArrayList<Integer> a = new ArrayList<Integer>(); //
-        findRec(n,0,a); 
-        System.out.println(a.size());
+        System.out.println(findRec(n,n)); 
     }
-    public static void findRec(int nsteps,int rsteps,ArrayList<Integer> a)
+    public static int findRec(int n,int index)
     {
-        if(rsteps==nsteps)
+        if(index<=1)
         {
-            a.add(1);
-            return;
+            return 1;
         }
-        if(rsteps<nsteps)
-        {
-            findRec(nsteps,rsteps+1,a);
-            findRec(nsteps,rsteps+2,a);
-        }
+        return findRec(n,index-1)+findRec(n,index-2);
 
     }
 }
