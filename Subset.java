@@ -1,22 +1,19 @@
-// printing all ananagrams of a string
-
 import java.util.*;
-public class Anag 
+public class Subset 
 {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the string : ");
-        String s = sc.nextInt();
+        int[] arr = {1,2,3};
         List<List<Integer>> finlist = new ArrayList<>();
-        String temp = "";
-        findAnag(s,finlist,temp,0);
+        List<Integer> list = new ArrayList<>();
+        printSubs(arr,arr.length,finlist,list,0);
+        System.out.println(finlist);
     }
-    public static void findAnag(String s,List<List<Integer>> finlist,String temp,int index)
+    public static void printSubs(int[] arr,int n,List<List<Integer>> finlist,List<Integer> list,int index)
     {
         if(index==n)
         {
-            finlist.add(); //
+            finlist.add(new ArrayList<>(list)); //
             return;
         }
         for(int i=index;i<arr.length;i++)
@@ -25,5 +22,6 @@ public class Anag
             printSubs(arr,n,finlist,list,i+1);
             list.remove(Integer.valueOf(arr[i]));
         }
+
     }
 }
