@@ -1,45 +1,55 @@
-import java.util.*;
-class Item 
-{
-    int value;
-    int weight;
-    public Item(int value,int weight)
-    {
-        this.value=value;
-        this.weight=weight;
+/*
+class Item {
+    int value, weight;
+    Item(int x, int y){
+        this.value = x;
+        this.weight = y;
     }
 }
-public class FractionalKnapsack 
+*/
+
+class Solution
 {
-    public static void main(String[] args)
+    //Function to get the maximum total value in the knapsack.
+    double fractionalKnapsack(int w, Item arr[], int n) 
     {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int knapcap = sc.nextInt();
-        int[] weight = new int[n];
-        int[] value = new int[n];
+        Arrays.sort(arr, new Comparator<Item>() {
+            @Override
+            public int compare(Item item1,
+                               Item item2)
+            {
+                double cpr1
+                    = new Double((double)item1.value
+                                 / (double)item1.weight);
+                double cpr2
+                    = new Double((double)item2.value
+                                 / (double)item2.weight);
+ 
+                if (cpr1 < cpr2)
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+        double profit = 0;
         for(int i=0;i<n;i++)
         {
-            weight[i] = sc.nextInt();
+            if(w-arr[i].weight>=0)
+            {
+                //System.out.println(arr[i].weight+" "+arr[i].value);
+                profit = profit + arr[i].value;
+                w=w-arr[i].weight;
+            }
+            else
+            {
+                //System.out.println(arr[i].weight+" "+arr[i].value);
+                double frac = (double)((double)w/(double)arr[i].weight);
+                //System.out.println(frac);
+                profit = profit + frac*arr[i].value;
+                break;
+            }
         }
-        for(int i=0;i<n;i++)
-        {
-            value[i] = sc.nextInt();
-        }
-        Item[] items = new Item[n];
-        for(int i=0;i<n;i++)
-        {
-            items[i] = new Item(weight[i],value[i]);
-        }
-       
+        return profit;
         
     }
 }
-
-
-
-//comments
-
-// Given an knapsack i.e bag of some kgs and we are given weights and values need to find maximum value we can get of that knapsack capacity/
-
-// caluculate value/weight ratio and sort them in decreasing order
